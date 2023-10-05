@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 if __name__ == "__main__":
-    """This prints the addition of all arguments."""
+    """Prints the addition of all arguments."""
     import sys
 
     total = 0
