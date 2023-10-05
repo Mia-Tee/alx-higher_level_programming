@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+"""Matching the  bytecode provided by Holberton School."""
 
 def magic_calculation(a, b):
-    """Matching the  bytecode provided by Holberton School."""
     from magic_calculation_102 import add, sub
 
     if a < b:
