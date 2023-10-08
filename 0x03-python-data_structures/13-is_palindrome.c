@@ -5,32 +5,47 @@
 /**
  * is_palindrome - checks if a linked list is a palindrome
  *
- * @head: the first node
+ * @head: first node
  *
  * Return: 1 - success
  *         0 - failed
  */
-
 int is_palindrome(listint_t **head)
 {
-	listint_t *tmp = *head;
-	int values[2048], i = 0, cLoop, limit;
+	listint_t *tmp, *rev, *mid;
+	size_t size = 0, i;
 
-	if (head == NULL || *head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
-	while (tmp != NULL)
+	tmp = *head;
+	while (tmp)
 	{
-		values[i] = tmp->n;
-		i++;
+		size++;
 		tmp = tmp->next;
 	}
 
-	limit = (i % 2 == 0) ? i / 2 : (i + 1) / 2;
+	tmp = *head;
+	for (i = 0; i < (size / 2) - 1; i++)
+		tmp = tmp->next;
 
-	for (cLoop = 0; cLoop < limit; cLoop++)
-		if (values[cLoop] != values[i - 1 - cLoop])
+	if ((size % 2) == 0 && tmp->n != tmp->next->n)
+		return (0);
+
+	tmp = tmp->next->next;
+	rev = reverse_listint(&tmp);
+	mid = rev;
+
+	tmp = *head;
+	while (rev)
+	{
+		if (tmp->n != rev->n)
 			return (0);
+		tmp = tmp->next;
+		rev = rev->next;
+	}
+	reverse_listint(&mid);
 
 	return (1);
 }
+
