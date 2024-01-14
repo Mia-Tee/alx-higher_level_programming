@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A script that deletes all State objects with a name containing the letter a from a database
+A script that prints all City objects from a database
 """
 
 import sqlalchemy
@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sys import argv
 from model_state import Base, State
+from model_city import City
 
 
 if __name__ == "__main__":
@@ -17,8 +18,8 @@ if __name__ == "__main__":
     Base.metadata.create_all(eng)
     Session = sessionmaker(bind=eng)
     session = Session()
-    states = session.query(State).filter(State.name.like('%a%'))
-    for state in states:
-        session.delete(state)
-    session.commit()
+    rows = session.query(City, State).filter(City.state_id == State.id)\
+                                     .order_by(City.id).all()
+    for city, state in rows:
+        print("{}: ({}) {}".format(state.name, city.id, city.name))
     session.close()
