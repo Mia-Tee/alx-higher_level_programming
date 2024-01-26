@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""takes in a URL, sends a request to the URL and displays the body of the response
-If HTTP status code >= 400, print: Error code: followed by the value of the HTTP status code
+"""sends a request to the URL and displays the body of the response
+If HTTP status code >= 400, print: Error code + value of the HTTP status code
 """
 
 import sys
